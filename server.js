@@ -30,7 +30,6 @@ app.get('/:stock', async (req, res) => {
             }
 
             if (type === 'key-statistics') {
-                console.log($.html())
                 const metrics = [
                     'Market Cap (intraday)',
                     'Trailing P/E',
