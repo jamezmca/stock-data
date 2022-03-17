@@ -4,7 +4,7 @@ const app = require('express')()
 const port = process.env.PORT || 8008
 
 app.get('/', (req, res) => {
-    res.status(200).send('<h1>Hello</h1>')
+    res.status(200).send({ data: 'hello' })
 })
 
 app.get('/:stock', async (req, res) => {
@@ -57,13 +57,13 @@ app.get('/:stock', async (req, res) => {
                     'Operating Cash Flow (ttm)'
                 ]
                 console.log($('section[data-test="qsp-statistics"]').html())
-              
 
-                return {  }
+
+                return {}
             }
         }))
-        
-        res.send('bananana')
+
+        res.send({ data: 'hello' })
         // res.status(200).send({
         //     [stock]: stockInfoType.reduce((acc, curr) => {
         //         return {...acc, [Object.keys(curr)[0]]: Object.values(curr)[0]}
