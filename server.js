@@ -23,12 +23,14 @@ app.get('/:stock', async (req, res) => {
             const { data } = await axios.get(url)
 
             const $ = cheerio.load(data)
+            
             if (type === 'history') {
                 const prices = $('td:nth-child(6)').get().map(val => $(val).text())
                 return { prices }
             }
 
             if (type === 'key-statistics') {
+                console.log($.html())
                 const metrics = [
                     'Market Cap (intraday)',
                     'Trailing P/E',
@@ -58,6 +60,7 @@ app.get('/:stock', async (req, res) => {
 
                 const statsArea = $('section[data-test="qsp-statistics"] > div:nth-child(2)').get().map(val => {
                     const $ = cheerio.load(val)
+                    console.log('bananan')
                     const valuationMeasures = $('div:first-child tbody tr').get().map(val => {
                         const text = $(val).text()
                         if (metrics.reduce((acc, curr) => {
@@ -79,13 +82,10 @@ app.get('/:stock', async (req, res) => {
                     }, {})
                     return  valuationMeasures
                 })
-                console.log(statsArea)
                 return {financials: statsArea[0]}
             }
         }))
 
-
-        console.log(stockInfoType)
 
         res.status(200).send({
             [stock]: stockInfoType.reduce((acc, curr) => {
