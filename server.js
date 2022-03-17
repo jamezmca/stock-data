@@ -59,7 +59,7 @@ app.get('/:stock', async (req, res) => {
                 // console.log($('section[data-test="qsp-statistics"]').get())
                 const statsArea = $('section[data-test="qsp-statistics"] div:nth-child(2)').get().map(val => {
                     const $ = cheerio.load(val)
-                    console.log($('div:first-child tbody tr').get())
+                    // console.log($('div:first-child tbody tr').get())
                     const valuationMeasures = $('div:first-child tbody tr').get().map(val => {
                         const text = $(val).text()
                         console.log(text)
