@@ -60,7 +60,7 @@ app.get('/:stock', async (req, res) => {
 
                 const statsArea = $('section[data-test="qsp-statistics"] > div:nth-child(2)').get().map(val => {
                     const $ = cheerio.load(val)
-                    console.log('bananan')
+                    console.log($.html())
                     const valuationMeasures = $('div:first-child tbody tr').get().map(val => {
                         const text = $(val).text()
                         if (metrics.reduce((acc, curr) => {
