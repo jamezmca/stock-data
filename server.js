@@ -88,11 +88,11 @@ app.get('/:stock', async (req, res) => {
         }))
 
 
-        res.status(200).send({
-            [stock]: stockInfoType.reduce((acc, curr) => {
-                return {...acc, [Object.keys(curr)[0]]: Object.values(curr)[0]}
-            }, {})
-        })
+        // res.status(200).send({
+        //     [stock]: stockInfoType.reduce((acc, curr) => {
+        //         return {...acc, [Object.keys(curr)[0]]: Object.values(curr)[0]}
+        //     }, {})
+        // })
 
 
     } catch (err) {
