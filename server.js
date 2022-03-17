@@ -56,7 +56,7 @@ app.get('/:stock', async (req, res) => {
                     'Total Debt/Equity (mrq)',
                     'Operating Cash Flow (ttm)'
                 ]
-                console.log($('section[data-test="qsp-statistics"] div:first-child tbody tr').get().map(val => $(val).html()))
+                console.log($('section[data-test="qsp-statistics"] div:first-child tbody tr').get().map(val => $(val).text()))
 
 
                 return {}
