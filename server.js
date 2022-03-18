@@ -14,15 +14,16 @@ app.get('/:stock', async (req, res) => {
         return res.status(400).send({ message: 'please include api_key & stock ticker' })
     }
 
-
-
+    const { data } = await axios.get('https://finance.yahoo.com/quote/MRNA/key-statistics?p=MRNA')
+    const $ = cheerio.load(data)
+    return res.send($('section[data-test="qsp-statistics"]').html())
 
     try {
         const stockInfoType = await Promise.all(['key-statistics', 'history'].map(async type => {
             const url = `https://finance.yahoo.com/quote/${stock}/${type}?p=${stock}`
             const { data } = await axios.get(url, {
                 headers: {
-                    "user-agent":" Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36"
+                    "user-agent": " Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36"
                 }
             })
 
