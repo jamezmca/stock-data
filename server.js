@@ -56,8 +56,18 @@ app.get('/:stock', async (req, res) => {
                     'Total Debt/Equity (mrq)',
                     'Operating Cash Flow (ttm)'
                 ]
-                console.log($('section[data-test="qsp-statistics"] div:first-child tbody tr').get().map(val => $(val).html()))
-
+                // console.log($('section[data-test="qsp-statistics"] div:first-child tbody tr').get().map(val => $(val).html()))
+                const banana = $('section[data-test="qsp-statistics"]').get().map(val => {
+                    const $ = cheerio.load(val)
+                    return $('div:first-child').get().map(val => {
+                        const $ = cheerio.load(val)
+                        return $('tbody tr').get().map(val => {
+                            console.log($(val).text())
+                            return $(val).text()
+                        })
+                    })
+                })
+                console.log(banana)
 
                 return {}
             }
