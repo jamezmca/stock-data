@@ -20,7 +20,11 @@ app.get('/:stock', async (req, res) => {
     try {
         const stockInfoType = await Promise.all(['key-statistics', 'history'].map(async type => {
             const url = `https://finance.yahoo.com/quote/${stock}/${type}?p=${stock}`
-            const { data } = await axios.get(url)
+            const { data } = await axios.get(url, {
+                headers: {
+                    "user-agent":" Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36"
+                }
+            })
 
             const $ = cheerio.load(data)
 
